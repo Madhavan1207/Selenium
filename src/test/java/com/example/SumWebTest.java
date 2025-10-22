@@ -17,15 +17,16 @@ public class SumWebTest {
 
     private WebDriver driver;
 
-    @Before
-    public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--allow-file-access-from-files");
+   @Before
+public void setUp() {
+    System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver-win64");
 
-        driver = new ChromeDriver(options); // Selenium Manager will auto-resolve ChromeDriver
-    }
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--headless=new");
+    options.addArguments("--allow-file-access-from-files");
 
+    driver = new ChromeDriver(options);
+}
     @Test
     public void testSum() {
         // Load local HTML file
@@ -54,3 +55,4 @@ public class SumWebTest {
         }
     }
 }
+
