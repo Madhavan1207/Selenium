@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
+import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,10 +21,11 @@ public class SumWebTest {
     @Before
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Use legacy headless mode for compatibility
+        options.addArguments("--headless"); // Headless mode for Jenkins
         options.addArguments("--allow-file-access-from-files");
 
-        driver = new ChromeDriver(options); // No need to set chromedriver path
+        driver = new ChromeDriver(options); // Selenium Manager handles ChromeDriver
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // Wait for elements
     }
 
     @Test
@@ -39,12 +41,14 @@ public class SumWebTest {
         WebElement button = driver.findElement(By.id("addButton"));
         WebElement result = driver.findElement(By.id("result"));
 
-        num1.sendKeys("5");
-        num2.sendKeys("7");
+        num1.sendKeys("10");
+        num2.sendKeys("20");
         button.click();
 
-        // Assert the result
-        assertEquals("12", result.getText());
+        // Print and assert result
+        String output = result.getText();
+        System.out.println("Sum is: " + output);
+        assertEquals("30", output);
     }
 
     @After
