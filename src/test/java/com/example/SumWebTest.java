@@ -17,12 +17,12 @@ public class SumWebTest {
 
     private WebDriver driver;
 
-   @Before
+  @Before
 public void setUp() {
-    System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver-win64");
+    System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
 
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless=new");
+    options.addArguments("--headless"); // Use legacy headless mode
     options.addArguments("--allow-file-access-from-files");
 
     driver = new ChromeDriver(options);
@@ -55,4 +55,5 @@ public void setUp() {
         }
     }
 }
+
 
